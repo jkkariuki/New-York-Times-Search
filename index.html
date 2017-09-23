@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New York Times API</title>
+</head>
+
+<body>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var search = $("#term").val();
+
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api_key=d44f7dca8c9d42d2931a277dfa8bbfbd" + "&q=" + search;
+
+
+    $.ajax({
+        url: url,
+        method: 'GET',
+    }).done(function(response) {
+        console.log(response);
+        console.log(search);
+        searchThis();
+        //console.log("response docs " + response.docs)
+    }).fail(function(err) {
+        throw err;
+    });
+
+    $("#searchBtn").on("click", searchThis)
+
+    function searchThis() {
+
+        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api_key=d44f7dca8c9d42d2931a277dfa8bbfbd" + "&q=" + search;
+
+
+        //var search = $('#term').val();
+        $("#term").val(search);
+        console.log(search);
+
+
+        var recordsInpt = $('#records').val();
+        $("#records").val(recordsInpt);
+        //console.log(recordsInpt);
+
+
+        var stryrInpt = $('#start').val();
+        $("#start").val(stryrInpt);
+        //console.log(stryrInpt);
+
+
+        var endTxtInpt = $('#end').val();
+        $("#end").val(endTxtInpt);
+        //console.log(endTxtInpt);
+
+
+
+    };
+
+    //console.log(response.docs[0]);
+
+    $("#clearBtn").on("click", function() {
+
+        $("#term").val("");
+        $("#records").val("");
+        $("#start").val("");
+        $("#end").val("");
+
+    });
+    </script>
+</body>
+
+</html>
